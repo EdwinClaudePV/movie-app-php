@@ -13,6 +13,16 @@ class View
   {
     require('movies.php');
   }
+
+  public function getMoviesJson($movies)
+  {
+    echo json_encode($movies);
+  }
+
+  public function getMoviesAjax()
+  {
+    require('movies.html');
+  }
 }
 
  ?>

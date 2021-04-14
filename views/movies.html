@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <table id="movies">
+      <tr>
+        <th>id</th>
+        <th>title</th>
+        <th>date</th>
+      </tr>
+    </table>
+  </body>
+</html>
+<script type="text/javascript">
+  var service = 'http://localhost/movie-app-php/';
+
+  $(document).ready(function(){
+
+      jQuery.support.cors = true;
+
+      $.ajax(
+      {
+          type: "GET",
+          url: service + '?action=movies&format=json',
+          data: "{}",
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
+          cache: false,
+          success: function (data) {
+
+          $.each(data,function(i,item){
+            $("#movies tbody").append('<tr><td>' + item.id + '</td><td>'
+              + item.title + '</td><td>' + item.date + '</td></tr>')
+            });
+      },
+           error: function (e) {
+                console.log("There was an error with your request...");
+                console.log("error: " + JSON.stringify(e));
+           }
+  });
+});
+</script>

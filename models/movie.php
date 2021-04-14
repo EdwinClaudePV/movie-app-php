@@ -15,5 +15,4 @@ class Movie
     $this->date = $date;
   }
 }
-
- ?>
+?>
